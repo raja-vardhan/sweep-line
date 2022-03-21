@@ -1,0 +1,4 @@
+<map id="StatusQueueNode" name="StatusQueueNode">
+<area shape="rect" id="node1" title="Strucutre to represent a node of the status queue." alt="" coords="5,96,144,123"/>
+<area shape="rect" id="node2" href="$struct_line_segment.html" title="Structure to store a line segment." alt="" coords="21,5,128,32"/>
+</map>
