@@ -3,6 +3,7 @@
 #include "StatusQueue.h"
 #include "EventQueue.h"
 #include <iostream>
+#define pdd pair<double, double>
 
 using namespace std;
 
@@ -308,5 +309,388 @@ class FindIntersections
             }
             cout << "\nExecution complete\n";
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    pdd lineLineIntersection(pdd A, pdd B, pdd C, pdd D)
+  {
+    // Line AB represented as a1x + b1y = c1
+    double a1 = B.second - A.second;
+    double b1 = A.first - B.first;
+    double c1 = a1 * (A.first) + b1 * (A.second);
+
+    // Line CD represented as a2x + b2y = c2
+    double a2 = D.second - C.second;
+    double b2 = C.first - D.first;
+    double c2 = a2 * (C.first) + b2 * (C.second);
+
+    double determinant = a1 * b2 - a2 * b1;
+
+    if (determinant == 0)
+    {
+      // The lines are parallel. This is simplified
+      // by returning a pair of FLT_MAX
+      return make_pair(-1, -1);
+    }
+    else
+    {
+      double x = (b2 * c1 - b1 * c2) / determinant;
+      double y = (a1 * c2 - a2 * c1) / determinant;
+      return make_pair(x, y);
+    }
+  }
+
+  void runAlgorithmB(vector<LineSegment> &segmentVector)
+  {
+    int n = (int)segmentVector.size();
+
+    for (int i = 0; i < n; i++)
+    {
+      for (int j = i + 1; j < n; j++)
+      {
+        pdd A, B, C, D;
+        A.first = segmentVector[i].startX;
+        A.second = segmentVector[i].startY;
+        B.first = segmentVector[i].endX;
+        B.second = segmentVector[i].endY;
+        C.first = segmentVector[j].startX;
+        C.second = segmentVector[j].startY;
+        D.first = segmentVector[j].endX;
+        D.second = segmentVector[j].endY;
+
+        pdd intersection = lineLineIntersection(A, B, C, D);
+
+        if (intersection.first == -1 &&
+            intersection.second == -1)
+        {
+          continue;
+        }
+
+        else
+        {
+          // && (min(A.second, B.second) <= intersection.first <= max(A.second, B.second))
+          if (min(A.first, B.first) <= intersection.first
+           && intersection.first <= max(A.first, B.first)) {
+            if (min(A.second, B.second) <= intersection.second &&
+                intersection.second <= max(A.second, B.second)){
+
+            }
+            else{
+              continue;
+            }
+          
+
+          }
+          else{
+          continue;
+          }
+
+          // NOTE: Further check can be applied in case
+          // of line segments. Here, we have considered AB
+          // and CD as lines
+          
+          cout << "The intersection point is : (" << intersection.first << "," << intersection.second<< ")"<< endl;
+
+          
+        }
+      }
+    }
+  }
 
 };

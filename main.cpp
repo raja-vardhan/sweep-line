@@ -1,5 +1,6 @@
 #include "FindIntersections.h"
 
+
 int main(){
     vector<LineSegment> segmentVector;
     cout << "Enter the number of lines you want to add : ";
@@ -17,6 +18,9 @@ int main(){
         segmentVector.push_back(l1);
     }
 
+    
+
+
     // cout << endl << endl;
     // for(int i=0;i<n;i++)
     // {
@@ -25,5 +29,7 @@ int main(){
     
     cout << endl << "Points of intersections are : \n";
     FindIntersections findIntersection = FindIntersections(segmentVector);
-    findIntersection.runAlgorithm();
+    // findIntersection.runAlgorithm();
+
+    findIntersection.runAlgorithmB(segmentVector);
 }
